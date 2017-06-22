@@ -20,7 +20,7 @@ $(document).ready(function(){
     var priceafterdiscount=a-Discountvalue;
     var wrapper = $(".input_fields_wrap");
 //var button='<input type="button" id="delete">';
-      var x ="<tr id="+id+"><td class='price'>"+priceafterdiscount+"</td>"+"&nbsp;&nbsp;&nbsp;<td class='discount'>"+Discountvalue+"</td>&nbsp;&nbsp;<td><button  class='remove_field' id="+"delete"+" name="+deleteid+">delete</button></td></tr>";
+      var x ="<tr id="+id+"><td width='70%' class='price'>"+priceafterdiscount+"</td>"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<td width='30%'class='discount'>"+Discountvalue+"</td>&nbsp;&nbsp;<td><button  class='remove_field' id="+"delete"+" name="+deleteid+">delete</button></td></tr></br>";
        $("#list1").append(x);
 
        $('#list1 tr').each(function() {
@@ -74,13 +74,15 @@ $("#totaldiscount").text(discounttotal);
 </head>
 <body>
 <div class="container"></br></br>
-Price: <input type="text" name="Price" id="Price">
-Discount: <input type="text" name="Discount" id="Discount">
-<button id="add">Add</button>
-</div></br></br>
+
+  </div></br></br>
+</div>
 <div class="container">
-  <div class="row">
-    <div class="col-md-4">
+  <div class="row"><div  class="col-md-4"></div>
+    <div class="col-md-6">
+      Price: <input type="text" name="Price" id="Price">
+      Discount: <input type="text" name="Discount" id="Discount">
+      <button id="add">Add</button></br></br></br>
       <table class='input_fields_wrap'style="width:100%" id="list1">
 
 
@@ -88,8 +90,12 @@ Discount: <input type="text" name="Discount" id="Discount">
 </br></br></br>
   <table style="width:100%">
     <tr>
-      <td id="totalprice"></td>
-    <td id="totaldiscount"></td>
+  <b>  Total Price  </b><td id="totalprice"></td>
+  <b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+    ;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Total Discount(rs)  </b>
+   <td id="totaldiscount"></td>
   </tr>
 </table>
 </div>
