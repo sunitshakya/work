@@ -10,6 +10,9 @@
 $(document).ready(function(){
     $("#add").click(function(){
       //  $(this).hide();
+      var blankbox="";
+
+
  var pricesum=0;
  var discounttotal=0;
     var a=  $("#Price").val();
@@ -20,50 +23,57 @@ $(document).ready(function(){
     var priceafterdiscount=a-Discountvalue;
   //  var wrapper = $(".input_fields_wrap");
 //var button='<input type="button" id="delete">';
-if (!a&&!b) {
-  // is emtpy
-    alert("please enter values");
+if(!a){
+    alert("please enter price");
 }else{
-  if (isNaN( $("#Price").val() )) {
-      // It isn't a number
-      alert("please enter price a number value");
-  } else {
-      // It is a number
+  if(!b){
+    alert("please enter Discount value");
+  }else{
 
-      if (isNaN( $("#Discount").val() )) {
-          // It isn't a number
-          alert("please enter Discount a number value");
-      } else {
-          // It is a number
-          //alert("nubmer");
-          var x ="<tr id="+id+"><td width='70%' class='price'>"+priceafterdiscount+"</td>"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<td width='30%'class='discount'>"+Discountvalue+"</td>&nbsp;&nbsp;<td><button  class='btn btn-danger remove_field' id="+"delete"+" name="+deleteid+">X</button></td></tr></br>";
-           $("#list1").append(x);
+    if (isNaN( $("#Price").val() )) {
+        // It isn't a number
+        alert("please enter price a number value");
+    } else {
+        // It is a number
 
-           $('#list1 tr').each(function() {
-        //adding price values
-               var priceofeach =parseFloat( $(this).find(".price").text());
-               pricesum=pricesum+priceofeach;
-               //adding discount values
-               var discountsumofeach =parseFloat( $(this).find(".discount").text());
+        if (isNaN( $("#Discount").val() )) {
+            // It isn't a number
+            alert("please enter Discount a number value");
+        } else {
+            // It is a number
+            //alert("nubmer");
+            var x ="<tr id="+id+"><td width='70%' class='price'>"+priceafterdiscount+"</td>"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<td width='30%'class='discount'>"+Discountvalue+"</td>&nbsp;&nbsp;<td><button  class='btn btn-danger remove_field' id="+"delete"+" name="+deleteid+">X</button></td></tr></br>";
+             $("#list1").append(x);
 
-               discounttotal=discounttotal+discountsumofeach;
+             $('#list1 tr').each(function() {
+          //adding price values
+                 var priceofeach =parseFloat( $(this).find(".price").text());
+                 pricesum=pricesum+priceofeach;
+                 //adding discount values
+                 var discountsumofeach =parseFloat( $(this).find(".discount").text());
 
-            });
+                 discounttotal=discounttotal+discountsumofeach;
 
-          /*  $('#list1 tr').each(function() {
+              });
+
+            /*  $('#list1 tr').each(function() {
 
 
 
-          });*/
-        // var check=pricesum.toFixed(2);
-          //alert(check);
-          pricesum=pricesum.toFixed(2);
-          discounttotal=discounttotal.toFixed(2);
-          $("#totalprice").text(pricesum);
-          $("#totaldiscount").text(discounttotal);
-      }
+            });*/
+          // var check=pricesum.toFixed(2);
+            //alert(check);
+            pricesum=pricesum.toFixed(2);
+            discounttotal=discounttotal.toFixed(2);
+            $("#totalprice").text(pricesum);
+            $("#totaldiscount").text(discounttotal);
+            $('#Price').val(blankbox);
+              $('#Discount').val(blankbox);
+        }
+    }
   }
 }
+
 
 
     //  addition finish here by add buttun
