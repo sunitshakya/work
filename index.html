@@ -18,28 +18,55 @@ $(document).ready(function(){
     var deleteid=id+"delete";
     var Discountvalue=(a*b)/100;
     var priceafterdiscount=a-Discountvalue;
-    var wrapper = $(".input_fields_wrap");
+  //  var wrapper = $(".input_fields_wrap");
 //var button='<input type="button" id="delete">';
-      var x ="<tr id="+id+"><td width='70%' class='price'>"+priceafterdiscount+"</td>"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<td width='30%'class='discount'>"+Discountvalue+"</td>&nbsp;&nbsp;<td><button  class='remove_field' id="+"delete"+" name="+deleteid+">delete</button></td></tr></br>";
-       $("#list1").append(x);
+if (!a&&!b) {
+  // is emtpy
+    alert("please enter values");
+}else{
+  if (isNaN( $("#Price").val() )) {
+      // It isn't a number
+      alert("please enter price a number value");
+  } else {
+      // It is a number
 
-       $('#list1 tr').each(function() {
- //adding price values
-           var priceofeach =parseFloat( $(this).find(".price").text());
-           pricesum=pricesum+priceofeach;
-           //adding discount values
-           var discountsumofeach =parseFloat( $(this).find(".discount").text());
-           discounttotal=discounttotal+discountsumofeach;
+      if (isNaN( $("#Discount").val() )) {
+          // It isn't a number
+          alert("please enter Discount a number value");
+      } else {
+          // It is a number
+          //alert("nubmer");
+          var x ="<tr id="+id+"><td width='70%' class='price'>"+priceafterdiscount+"</td>"+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<td width='30%'class='discount'>"+Discountvalue+"</td>&nbsp;&nbsp;<td><button  class='btn btn-danger remove_field' id="+"delete"+" name="+deleteid+">X</button></td></tr></br>";
+           $("#list1").append(x);
 
-        });
+           $('#list1 tr').each(function() {
+        //adding price values
+               var priceofeach =parseFloat( $(this).find(".price").text());
+               pricesum=pricesum+priceofeach;
+               //adding discount values
+               var discountsumofeach =parseFloat( $(this).find(".discount").text());
 
-      /*  $('#list1 tr').each(function() {
+               discounttotal=discounttotal+discountsumofeach;
+
+            });
+
+          /*  $('#list1 tr').each(function() {
 
 
 
-      });*/
-      $("#totalprice").text(pricesum);
-      $("#totaldiscount").text(discounttotal);
+          });*/
+        // var check=pricesum.toFixed(2);
+          //alert(check);
+          pricesum=pricesum.toFixed(2);
+          discounttotal=discounttotal.toFixed(2);
+          $("#totalprice").text(pricesum);
+          $("#totaldiscount").text(discounttotal);
+      }
+  }
+}
+
+
+    //  addition finish here by add buttun
     });
 
 
@@ -60,6 +87,8 @@ $(document).on("click","button.remove_field", function(e){ //user click on remov
 
 pricesum=totalagainprice-$price;
 discounttotal=totalagaindiscount-$discount;
+pricesum=pricesum.toFixed(2);
+discounttotal=discounttotal.toFixed(2);
 $("#totalprice").text(pricesum);
 $("#totaldiscount").text(discounttotal);
 //alert(pricesum);
@@ -81,14 +110,15 @@ $("#totaldiscount").text(discounttotal);
   <div class="row"><div  class="col-md-4"></div>
     <div class="col-md-6">
       Price: <input type="text" name="Price" id="Price">
-      Discount: <input type="text" name="Discount" id="Discount">
-      <button id="add">Add</button></br></br></br>
-      <table class='input_fields_wrap'style="width:100%" id="list1">
-
+      Discount(%)<input type="text" name="Discount" id="Discount">
+      <button class="btn btn-primary" id="add">Add</button></br></br></br>
+      <table class="table table-striped" style="width:100%" id="list1">
+<tbody>
+</tbody>
 
   </table>
 </br></br></br>
-  <table style="width:100%">
+  <table class="table" style="width:100%">
     <tr>
   <b>  Total Price  </b><td id="totalprice"></td>
   <b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
