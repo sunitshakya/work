@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("#add").click(function(){
+      //  $(this).hide();
+ var pricesum=0;
+ var discounttotal=0;
+    var a=  $("#Price").val();
+    var b=  $("#Discount").val();
+    var id=a+""+b;
+    var deleteid=id+"delete";
+    var Discountvalue=(a*b)/100;
+    var priceafterdiscount=a-Discountvalue;
+    var wrapper = $(".input_fields_wrap");
+//var button='<input type="button" id="delete">';
+      var x ="<tr id="+id+"><td class='price'>"+priceafterdiscount+"</td>"+"&nbsp;&nbsp;&nbsp;<td class='discount'>"+Discountvalue+"</td>&nbsp;&nbsp;<td><button  class='remove_field' id="+"delete"+" name="+deleteid+">delete</button></td></tr>";
+       $("#list1").append(x);
+
+       $('#list1 tr').each(function() {
+ //adding price values
+           var priceofeach =parseFloat( $(this).find(".price").text());
+           pricesum=pricesum+priceofeach;
+           //adding discount values
+           var discountsumofeach =parseFloat( $(this).find(".discount").text());
+           discounttotal=discounttotal+discountsumofeach;
+
+        });
+
+      /*  $('#list1 tr').each(function() {
+
+
+
+      });*/
+      $("#totalprice").text(pricesum);
+      $("#totaldiscount").text(discounttotal);
+    });
+
+
+//remove content
+$(document).on("click","button.remove_field", function(e){ //user click on remove text
+        e.preventDefault();
+      //  $(this).closest('tr').remove();
+        //removing values from list and calculating total again
+        var $row = $(this).closest("tr");    // Find the row
+    var $price = parseFloat($row.find(".price").text()); // Find the text
+    var $discount = parseFloat($row.find(".discount").text()); // Find the text
+
+  //getting previus totalprice
+  var totalagainprice=parseFloat($("#totalprice").text());
+    var totalagaindiscount=parseFloat($("#totaldiscount").text());
+//alert(totalagain);
+//reclaculate price and discount
+
+pricesum=totalagainprice-$price;
+discounttotal=totalagaindiscount-$discount;
+$("#totalprice").text(pricesum);
+$("#totaldiscount").text(discounttotal);
+//alert(pricesum);
+    $row.remove();
+
+    });
+
+
+});
+
+</script>
+</head>
+<body>
+<div class="container"></br></br>
+Price: <input type="text" name="Price" id="Price">
+Discount: <input type="text" name="Discount" id="Discount">
+<button id="add">Add</button>
+</div></br></br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <table class='input_fields_wrap'style="width:100%" id="list1">
+
+
+  </table>
+</br></br></br>
+  <table style="width:100%">
+    <tr>
+      <td id="totalprice"></td>
+    <td id="totaldiscount"></td>
+  </tr>
+</table>
+</div>
+
+
+
+  </div>
+
+</div>
+
+</body>
+</html>
